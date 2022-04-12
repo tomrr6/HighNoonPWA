@@ -7,6 +7,7 @@ var p2ShootTime = null;
 
 $(document).ready(function(){
     startGame();
+    
 });
 
 $('.scoreDot').click(function(){
@@ -14,11 +15,12 @@ $('.scoreDot').click(function(){
 });
 
 // p1 Win
-$('#p1ShootButton').touchend(function(){
+$('#p1ShootButton').tap(function(){
     if (p1ShootTime == null){
         p1ShootTime = Date.now();
         console.log('p1 shoot: ' + p1ShootTime);
         console.log('p1 shoot - high noon: ' + (p1ShootTime - highNoonStart));
+        $('#p1TimeDisplay').text((p1ShootTime - highNoonStart)/1000 +'s');
 
         if(p2ShootTime == null){
             p1Points ++;
@@ -40,11 +42,13 @@ $('#p1ShootButton').touchend(function(){
     }
 });
 
-$('#p2ShootButton').touchend(function(){
+$('#p2ShootButton').tap(function(){
     if (p2ShootTime == null){
         p2ShootTime = Date.now();
         console.log('p2 shoot: ' + p2ShootTime);
         console.log('p2 shoot - high noon: ' + (p2ShootTime - highNoonStart));
+        $('#p2TimeDisplay').text((p2ShootTime - highNoonStart)/1000 +'s');
+
         if(p1ShootTime == null){
             p2Points ++;
 
@@ -107,6 +111,8 @@ function resetScreen(){
 }
 
 function startGame(){
+    $('#p1TimeDisplay').text('');
+    $('#p2TimeDisplay').text('');
     p1ShootTime = null;
     p2ShootTime = null;
     $('#waitForIt').removeClass('hidden');

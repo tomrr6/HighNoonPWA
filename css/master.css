@@ -58,21 +58,25 @@ p{
     text-align: center;
     color: rgba(255, 255, 255, .7);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 900;
+    font-weight: 500;
 }
 
-p.fireText{
+p.buttonText{
     margin: 0;
     position: relative;
     top: 5.5rem;
     font-size: 4rem;
-    font-family: 'Seymour One', sans-serif;
     color: rgba(255, 255, 255, 1);
     opacity: 0%;
 
-    transition: opacity .05s ease-in, top .05s ease-in;
+    transition: opacity .05s ease-in, top .05s ease-out;
 }
-div.shootButton.shootButtonReady p.fireText{
+p.fireText{
+    display: none;
+    font-family: 'Seymour One', sans-serif;
+}
+div.shootButton.shootButtonReady p.buttonText{
+    display: block;
     opacity: 100%;
     top: 4.5rem;
 }
@@ -111,6 +115,10 @@ div.shootButton.winnerButton{
     border-width: .6rem .6rem 0 .6rem;
     border-color: var(--victory-color);
     animation: shootButtonWin .1s both ease-in-out;
+}
+div.shootButton.winnerButton p.blinkingTime{
+    color: var(--victory-color);
+    animation: fadingText .5s both ease-in-out infinite;
 }
 div.shootButton.loserButton{
     animation: shootButtonLoss .1s both ease-out;
@@ -199,7 +207,8 @@ div#waitForIt{
     align-items: center; */
     opacity: 100%;
     /* backdrop-filter: blur(.23em); */
-    transition: backdrop-filter .1s ease-in-out, opacity .1s ease-in-out;
+    animation: fadingText 3s linear infinite both;
+    transition: backdrop-filter .1s ease-in-out;
 }
 div#waitForIt>p{
     position: absolute;
@@ -224,15 +233,15 @@ div.hidden{
 
 /* Blinking Time Display */
 p.blinkingTime{
-    animation: blinkingTime 3s linear infinite;
+    animation: fadingText 3s linear infinite both;
 }
 
-@keyframes blinkingTime{
+@keyframes fadingText{
     0%, 100%{
-        opacity: 0;
+        opacity: .2;
     }
     50%{
-        opacity: 1;
+        opacity: .9;
     }
 }
 
