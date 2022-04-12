@@ -45,7 +45,7 @@ div.playerSide{
     margin: 0;
 }
 div.p2Side{
-    transform: rotateX(180deg);
+    transform: rotateY(180deg) rotateX(180deg);
 }
 div.p2Side.CPUplayer
 {
@@ -81,7 +81,6 @@ div.shootButton.shootButtonReady p.buttonText{
     top: 4.5rem;
 }
 div.shootButton.shootButtonReady{
-    /* border-width: .5rem; */
     transition: border-width 0 ease-in;
     animation: borderPulse .1s ease-in-out infinite alternate;
 }
@@ -91,7 +90,7 @@ div.shootButton{
     border-style: solid;
     border-width: 0;
 
-    transition: transform .02s ease-in;
+    transition: transform .5s ease-in;
 
     position: absolute;
     bottom: -10rem;
@@ -201,13 +200,7 @@ div#waitForIt{
     position: absolute;
     width: 100%;
     height: 100%;
-    /* background-color: rgba(0, 0, 0, 0.1); */
-    /* display: flex; */
-    /* justify-content: center;
-    align-items: center; */
-    opacity: 100%;
-    /* backdrop-filter: blur(.23em); */
-    animation: fadingText 3s linear infinite both;
+    /* background-color: white; */
     transition: backdrop-filter .1s ease-in-out;
 }
 div#waitForIt>p{
@@ -221,7 +214,7 @@ div#waitForIt>p{
     margin: auto;
     font-size: 4rem;
     color: rgba(255, 255, 255, .7);
-    animation: rotateText 4s infinite ease-in-out alternate;
+    animation: rotateText 4s infinite linear, fadingText 1.1s infinite ease-in-out;
     animation-delay: -2.5s;
     /* text-shadow: 0 0 2rem rgba(0,0,0, .1); */
 }
@@ -256,10 +249,10 @@ p.blinkingTime{
 
 @keyframes rotateText {
     0% {
-        transform: rotate(105deg);
+        transform: rotate(90deg);
     }
     100% {
-        transform: rotate(75deg);
+        transform: rotate(450deg);
     }
 }
 
