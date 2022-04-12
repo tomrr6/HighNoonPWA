@@ -1,9 +1,10 @@
-var pointsNeededToWin = 3;
+var pointsNeededToWin = 7;
 var p1Points = 0;
 var p2Points = 0;
 var highNoonStart = null;
 var p1ShootTime = null;
 var p2ShootTime = null;
+let shootAllowed = false;
 
 $(document).ready(function(){
     startGame();
@@ -16,7 +17,13 @@ $('.scoreDot').click(function(){
 
 // p1 Win
 $('#p1ShootButton').tap(function(){
-    if (p1ShootTime == null){
+    if(!shootAllowed){
+        // p1Points--;
+        alert('Player 1 misfire!😟');
+        // updateScore();
+        // resetScreen();
+    }
+    else if(p1ShootTime == null && shootAllowed){
         p1ShootTime = Date.now();
         console.log('p1 shoot: ' + p1ShootTime);
         console.log('p1 shoot - high noon: ' + (p1ShootTime - highNoonStart));
@@ -43,7 +50,13 @@ $('#p1ShootButton').tap(function(){
 });
 
 $('#p2ShootButton').tap(function(){
-    if (p2ShootTime == null){
+    if(!shootAllowed){
+        // p2Points--;
+        alert('Player 2 misfire!😟');
+        // updateScore();
+        // resetScreen();
+    }
+    else if (p2ShootTime == null && shootAllowed){
         p2ShootTime = Date.now();
         console.log('p2 shoot: ' + p2ShootTime);
         console.log('p2 shoot - high noon: ' + (p2ShootTime - highNoonStart));
@@ -94,6 +107,7 @@ function updateScore(){
 }
 
 function resetScreen(){
+    shootAllowed = false;
     $('#p1ShootButton').removeClass('shootButtonReady');
     $('#p2ShootButton').removeClass('shootButtonReady');
     $('#p1ShootButton').removeClass('loserButton');
@@ -119,6 +133,7 @@ function startGame(){
     let highNoonDelay = Math.random() * 10000 + 3000;
     $(document).delay(highNoonDelay).queue(function(){
         highNoonStart = Date.now();
+        shootAllowed = true;
         console.log('high noon: ' + highNoonStart);
         $('#waitForIt').addClass('hidden');
         $('#p1ShootButton').toggleClass('shootButtonReady');

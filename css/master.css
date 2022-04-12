@@ -196,15 +196,15 @@ div.scoreDot.filled, div.scoreDot.empty:hover{
 
 /* Wait For It */
 div#waitForIt{
+    pointer-events: none; 
     transform: scale(1);
     z-index: 1;
     position: absolute;
     width: 100%;
     height: 100%;
-    /* background-color: white; */
-    transition: backdrop-filter .1s ease-in-out;
 }
 div#waitForIt>p{
+    pointer-events: none; 
     position: absolute;
     width: fit-content;
     height: fit-content;
@@ -282,6 +282,7 @@ p.blinkingTime{
 }
 
 div.boxingVic{
+    pointer-events: none; 
     transform: translateY(120%);
     width: 20rem;
     position: absolute;
@@ -293,6 +294,7 @@ div.boxingVic{
     display: none;
 }
 div.boxingVic>img{
+    pointer-events: none; 
     width: 100%;
     height: 100%;
 }
