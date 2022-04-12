@@ -45,7 +45,7 @@ div.playerSide{
     margin: 0;
 }
 div.p2Side{
-    transform: rotateX(180deg);
+    transform: rotateY(180deg);
 }
 div.p2Side.CPUplayer
 {
