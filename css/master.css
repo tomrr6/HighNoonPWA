@@ -1,0 +1,325 @@
+body{
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    overflow: hidden;
+
+    --p1-color: #FF5765;
+    --p2-color: #6fbcdf;
+    /* --p2-color: hsl(199, 15%, 65%); */
+    --victory-color: #ffd324;
+
+}
+#gameContainer{
+    /* filter: blur(5px); */
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+#gameBG{
+    position: absolute;
+    top: -100%;
+    width: 100%;
+    height: 300%;
+    --gradientMid: 50%;
+    background: linear-gradient(180deg, var(--p2-color) 0%, var(--p2-color) var(--gradientMid), var(--p1-color) var(--gradientMid), var(--p1-color) 100%);
+    opacity: 60%;
+    transform: translateY(0);
+    transition: transform .5s ease-in-out, opacity 1s ease-out;
+    /* animation: bgP2Victory .1s both ease-out 1s; */
+}
+#gameBG.p1Victory{
+    transition: transform .1s cubic-bezier(.8, .5, .2, 1.4), opacity 1s ease-out;
+    transform: translateY(-25vh);
+}
+#gameBG.p2Victory{
+    transition: transform .1s cubic-bezier(.8, .5, .2, 1.4), opacity 1s ease-out;
+    transform: translateY(25vh);
+}
+
+div.playerSide{
+    position: relative;
+    /* outline:rgba(26, 240, 151, 0.6) solid .25rem; */
+    width: 100%;
+    height: 50%;
+    margin: 0;
+}
+div.p2Side{
+    transform: rotateX(180deg);
+}
+div.p2Side.CPUplayer
+{
+    /* backdrop-filter: saturate(0%); */
+    filter: saturate(0%);
+}
+
+p{
+    font-size: 2rem;
+    text-align: center;
+    color: rgba(255, 255, 255, .7);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 900;
+}
+
+p.fireText{
+    margin: 0;
+    position: relative;
+    top: 5.5rem;
+    font-size: 4rem;
+    font-family: 'Seymour One', sans-serif;
+    color: rgba(255, 255, 255, 1);
+    opacity: 0%;
+
+    transition: opacity .05s ease-in, top .05s ease-in;
+}
+div.shootButton.shootButtonReady p.fireText{
+    opacity: 100%;
+    top: 4.5rem;
+}
+div.shootButton.shootButtonReady{
+    /* border-width: .5rem; */
+    transition: border-width 0 ease-in;
+    animation: borderPulse .1s ease-in-out infinite alternate;
+}
+div.shootButton{
+    background-color: var(--p1-color);
+    border-color: rgba(255, 255, 255, .2);
+    border-style: solid;
+    border-width: 0;
+
+    transition: transform .02s ease-in;
+
+    position: absolute;
+    bottom: -10rem;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+div.shootButton.shootButtonReady:active{
+    transform: scale(1.3, 0.85);
+}
+div.shootButton#p2ShootButton{
+    background-color: var(--p2-color);
+}
+div.shootButton.winnerButton{
+    border-width: .6rem .6rem 0 .6rem;
+    border-color: var(--victory-color);
+    animation: shootButtonWin .1s both ease-in-out;
+}
+div.shootButton.loserButton{
+    animation: shootButtonLoss .1s both ease-out;
+}
+
+
+
+/* Score Dots */
+.score{
+    position: absolute;
+    top: 3rem;
+    margin-inline: auto;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .score{
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+} */
+
+div.scoreDot{
+    /* flex-grow: 1; */
+    width: 1rem;;
+    height: 1rem;
+    border: rgba(255, 255, 255, .75) .25rem solid;
+    border-radius: 1rem;
+    outline-color: rgba(255, 255, 255, .75);
+    outline-width: 0rem;
+    outline-offset: -.25rem;
+    transition: outline .5s ease-in-out, border .25s ease-in-out, padding .25s ease-in-out;
+}
+div.scoreDot.newlyFilled{
+    border-width: 0rem;
+    padding: .25rem;
+    outline: var(--victory-color) .75rem solid;
+    outline-offset: -.75rem;
+}
+div.scoreDot.filled{
+    border-width: 0rem;
+    padding: .25rem;
+    outline: rgba(255, 255, 255, .75) .75rem solid;
+    outline-offset: -.75rem;
+}
+
+/* div.scoreDot{
+    flex-grow: 1.1;
+    height: 1rem;
+    border: rgba(255, 255, 255, .75) solid;
+    border-width: .25rem .0 .25rem .0;
+    transition: border .1s ease-in-out, background-color .1s ease-in-out;
+}
+div.scoreDot:first-child{
+    flex-grow: 1;
+    border-width: .25rem .0 .25rem .25rem;
+    border-radius: 2rem 0 0 2rem;
+}
+div.scoreDot:last-child{
+    flex-grow: 1;
+    border-width: .25rem .25rem .25rem .0;
+    border-radius: 0 2rem 2rem 0;
+}
+div.scoreDot.filled, div.scoreDot.empty:hover{
+    background-color: rgba(255, 255, 255, .75);
+    border-color: rgba(255, 255, 255, 0);
+} */
+
+/* Wait For It */
+div#waitForIt{
+    transform: scale(1);
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center; */
+    opacity: 100%;
+    /* backdrop-filter: blur(.23em); */
+    transition: backdrop-filter .1s ease-in-out, opacity .1s ease-in-out;
+}
+div#waitForIt>p{
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, .7);
+    animation: rotateText 4s infinite ease-in-out alternate;
+    animation-delay: -2.5s;
+    /* text-shadow: 0 0 2rem rgba(0,0,0, .1); */
+}
+
+div.hidden{
+    display: none;
+}
+
+
+/* Blinking Time Display */
+p.blinkingTime{
+    animation: blinkingTime 3s linear infinite;
+}
+
+@keyframes blinkingTime{
+    0%, 100%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+}
+
+@keyframes borderPulse {
+    0%, 100% {
+        border-width: .35rem .35rem 0 .35rem;
+    }
+    100% {
+        border-width: .75rem .75rem 0 .75rem;
+    }
+}
+
+@keyframes rotateText {
+    0% {
+        transform: rotate(105deg);
+    }
+    100% {
+        transform: rotate(75deg);
+    }
+}
+
+/* Victory Animations */
+
+@keyframes shootButtonLoss {
+    0%{
+    }
+    48%{
+        transform: scale(1, 1);
+    }
+    90%{
+        transform: scale(1.6, 0.5);
+    }
+    100%{
+        transform: scale(1.5, 0.5);
+    }
+}
+@keyframes shootButtonWin {
+    0%, 100%{
+        transform: scale(1, 1);
+    }
+    70%{
+        transform: scale(.7, 1.2);
+    }
+}
+
+div.boxingVic{
+    transform: translateY(120%);
+    width: 20rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0%;
+    /* bottom: 0%; */
+    margin-inline: auto;
+    display: none;
+}
+div.boxingVic>img{
+    width: 100%;
+    height: 100%;
+}
+div.p2Side>div.boxingVic>img{
+        filter: hue-rotate(-880deg);
+}
+
+div.boxingVic.winActivated>img{
+    z-index: 9999;
+}
+div.boxingVic.winActivated{
+    display: block;
+    animation: boxingVicAnimation .2s both ease-in;
+}
+
+@keyframes boxingVicAnimation{
+    0%{
+        transform: translateY(0vh) scaleY(1.1);
+        /* filter:blur(1rem); */
+    }
+    50%{
+        transform: translateY(-50vh) scaleY(1.5);
+        /* filter:blur(1rem); */
+    }
+    51%{
+        transform: translateY(-50vh) scaleY(1);
+        /* filter:blur(0rem); */
+    }
+    100%{
+        transform: translateY(-45vh);
+    }
+}
+

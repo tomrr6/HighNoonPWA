@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./css/master.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Seymour+One&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="waitForIt">
+            <p>wait for it...</p>
+        </div>
+
+        <div id="gameContainer">
+            <div id="gameBG"></div>
+
+            <div class="playerSide p2Side">
+                <div id="p2Score" class="score">
+                    <!-- <div class="scoreDot filled"></div>
+                    <div class="scoreDot filled"></div>
+                    <div class="scoreDot empty"></div> -->
+                </div>
+                <div class="shootButton" id="p2ShootButton">
+                    <p class="fireText">FIRE!</p>
+                    <p class="fireText">😟</p>
+                    <!-- <p class="fireText blinkingTime">1.05s</p> -->
+                </div>
+                <div id="p2BoxingGlove" class="victory boxingVic">
+                    <img src="./img/victoryAnim/Boxing-Gloves.png" alt="">
+                </div>
+            </div>
+
+
+            <div class="playerSide p1Side">
+                <div id="p1Score" class="score">
+                    <!-- <div class="scoreDot filled"></div>
+                    <div class="scoreDot empty"></div>
+                    <div class="scoreDot empty"></div> -->
+                </div>
+                <div class="shootButton" id="p1ShootButton">
+                    <p class="fireText">FIRE!</p>
+                    <!-- <p class="fireText">😟</p> -->
+                    <p class="fireText blinkingTime">1.05s</p>
+                </div>
+                <div id="p1BoxingGlove" class="victory boxingVic">
+                    <img src="./img/victoryAnim/Boxing-Gloves.png" alt="">
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="./js/animTest.js" async defer></script>
+    </body>
+</html>
