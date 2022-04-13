@@ -1,4 +1,4 @@
-var pointsNeededToWin = 3;
+var pointsNeededToWin = 5;
 var p1Points = 0;
 var p2Points = 0;
 var highNoonStart = null;
