@@ -8,7 +8,7 @@ let shootAllowed = false;
 let highNoonTimeout = null;
 let newlyFilledDotTimeout = null;
 
-const vsCPU = true;
+const vsCPU = false;
 let CPUdelay = 5000;
 const maxCPUdelay = 1000;
 
