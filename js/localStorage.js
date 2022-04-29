@@ -106,9 +106,9 @@ function updateSettings(key, value) {
 if (getSettings() == null) {
     resetSettings();
 }
-if (getleaderboard() == null) {
-    resetLeaderboard();
-}
+// if (getleaderboard() == null) {
+//     resetLeaderboard();
+// }
 
 
 // createNewCurrentGame();
@@ -122,3 +122,5 @@ console.log(getCurrentGame());
 let vh = window.innerHeight * 0.01;
 // Then we set the value in the --vh custom property to the root of the document
 document.documentElement.style.setProperty('--vh', `${vh}px`);
+document.documentElement.style.setProperty('--fullvh', `${window.innerHeight}px`);
+console.log(`${window.innerHeight}px`);
