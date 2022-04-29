@@ -1,5 +1,5 @@
 html {
-    height: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
 }
 
 body {
@@ -18,7 +18,9 @@ body {
     overflow: hidden;
     width: 100vw;
     height: 100vh;
-    height: -webkit-fill-available;
+    /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
+    /* height: -webkit-fill-available; */
 }
 
 #gameBG {
@@ -71,11 +73,11 @@ div.playerSide {
 
 /* rotates p2 */
 
-div.p2Side {
+div#p2Side {
     transform: rotateY(180deg) rotateX(180deg);
 }
 
-div.p2Side.CPUplayer {
+div#p2Side.CPUplayer {
     /* backdrop-filter: saturate(0%); */
     filter: saturate(0%);
     pointer-events: none;
@@ -361,7 +363,7 @@ div.boxingVic>img {
     height: 100%;
 }
 
-div.p2Side>div.boxingVic>img {
+div#p2Side>div.boxingVic>img {
     filter: hue-rotate(-880deg);
 }
 
@@ -512,6 +514,8 @@ a:hover {
     left: 0;
     width: 100vw;
     height: 100vh;
+    /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
     /* background-color: #24ff7c; */
     overflow: hidden;
     display: flex;

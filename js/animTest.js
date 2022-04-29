@@ -16,13 +16,13 @@ let CPUdelay = 5000;
 const maxCPUdelay = 1000;
 
 const titleScreenLocation = "../index.html";
-let checkIfLooseFocus = true;
+let checkIfLooseFocus = false;
 
 
 
 $(document).ready(function() {
     if (vsCPU) {
-        $('div.p2Side').addClass('CPUplayer');
+        $('div#p2Side').addClass('CPUplayer');
     }
     window.anim
     createScoreBoard();
@@ -41,7 +41,7 @@ $('.scoreDot').click(function() {
 });
 
 // p1 Win
-$('#p1ShootButton').tap(function() {
+$('#p1Side').tap(function() {
     if (!shootAllowed && misfiresCheckedFor) {
         if (getCurrentGame().p2Points < pointsNeededToWin - 1) { //can't win from a misfire
             increaseOrDecreaseScore(2, 1);
@@ -78,7 +78,7 @@ $('#p1ShootButton').tap(function() {
     }
 });
 
-$('#p2ShootButton').tap(function() {
+$('#p2Side').tap(function() {
     if (!shootAllowed && misfiresCheckedFor) {
         if (getCurrentGame().p1Points < pointsNeededToWin - 1) { //can't win from a misfire
             increaseOrDecreaseScore(1, 1);
@@ -207,7 +207,7 @@ function startGame() {
 
         if (vsCPU) {
             setTimeout(function() {
-                $('#p2ShootButton').trigger('tap');
+                $('#p2Side').trigger('tap');
             }, CPUdelay);
         }
 
