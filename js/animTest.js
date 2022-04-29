@@ -24,6 +24,7 @@ $(document).ready(function() {
     if (vsCPU) {
         $('div.p2Side').addClass('CPUplayer');
     }
+    window.anim
     createScoreBoard();
     startGame();
 });
