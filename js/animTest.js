@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 //return to title screen if loose focus
 $(window).blur(function() {
-    window.location.href = "../index.html";
+    window.location.href = "index.html";
 });
 
 $('.scoreDot').click(function() {
