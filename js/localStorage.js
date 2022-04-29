@@ -103,15 +103,15 @@ function updateSettings(key, value) {
 // };
 
 // //initialize-----------------------------------
-// if (getSettings() == null) {
-//     resetSettings();
-// }
-// if (getleaderboard() == null) {
-//     resetLeaderboard();
-// }
+if (getSettings() == null) {
+    resetSettings();
+}
+if (getleaderboard() == null) {
+    resetLeaderboard();
+}
 
 
-// // createNewCurrentGame();
-// console.log(getSettings());
-// console.log(getCurrentGame());
+// createNewCurrentGame();
+console.log(getSettings());
+console.log(getCurrentGame());
 // console.log(getleaderboard());

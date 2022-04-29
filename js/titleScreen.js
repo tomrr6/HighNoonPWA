@@ -42,29 +42,29 @@ $('#settingsButton').click(function() {
         window.location.href = "pages/settings.html";
     }
 });
-// $('#settings-reset-button').click(function() {
-//     resetSettings();
-//     window.location.reload();
-// });
+$('#settings-reset-button').click(function() {
+    resetSettings();
+    window.location.reload();
+});
 
-// //num to win
-// $('#numToWin-Setter').ready(function() {
-//     $('#numToWin-Setter').val(getSettings().pointsNeededToWin);
-// });
-// $('#numToWin-Setter').change(function() {
-//     if ($('#numToWin-Setter').val() < 1) {
-//         $('#numToWin-Setter').val(1);
-//     }
-//     updateSettings('pointsNeededToWin', $('#numToWin-Setter').val());
-// });
+//num to win
+$('#numToWin-Setter').ready(function() {
+    $('#numToWin-Setter').val(getSettings().pointsNeededToWin);
+});
+$('#numToWin-Setter').change(function() {
+    if ($('#numToWin-Setter').val() < 1) {
+        $('#numToWin-Setter').val(1);
+    }
+    updateSettings('pointsNeededToWin', $('#numToWin-Setter').val());
+});
 
-// //early fires
-// $('#earlyFire-Setter').ready(function() {
-//     $('#earlyFire-Setter').prop('checked', getSettings().misfiresCheckedFor);
-// });
-// $('#earlyFire-Setter').change(function() {
-//     updateSettings('misfiresCheckedFor', $('#earlyFire-Setter').prop('checked'));
-// });
+//early fires
+$('#earlyFire-Setter').ready(function() {
+    $('#earlyFire-Setter').prop('checked', getSettings().misfiresCheckedFor);
+});
+$('#earlyFire-Setter').change(function() {
+    updateSettings('misfiresCheckedFor', $('#earlyFire-Setter').prop('checked'));
+});
 
 //leaderboard page ==----------------------------------------
 $('#leaderboardButton').click(function() {
