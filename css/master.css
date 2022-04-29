@@ -489,48 +489,66 @@ a:hover {
     justify-content: space-between;
 }
 
+#resumeGameButton>div#resumeText {
+    flex-shrink: 1;
+}
+
 #resumeGameButton>div#resumeRecap {
+    flex-shrink: 1;
     --gradientMid: 50%;
     background: linear-gradient(-90deg, #6fbcdf99 0%, #6fbcdf99 var(--gradientMid), #FF576599 var(--gradientMid), #FF576599 100%);
     border-radius: 1rem;
     padding: .5rem;
 }
 
-#gameBGtilt {
-    position: absolute;
+#titleBGtiltHolder {
+    position: relative;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: #24ff7c; */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#gameBGtilt.on-title-screen {
-    animation: title-bg-tilt 10s linear infinite;
+#titleBGtilt {
+    overflow: visible;
+    animation: title-bg-tilt 10s linear infinite 5s;
     transition: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
 }
 
-#gameBGtilt.on-title-screen>#gameBG {
-    transition: none;
+#titleBG {
+    width: 500vw;
+    height: 500vh;
+    --gradientMid: 50%;
+    background: linear-gradient(180deg, #6fbcdf99 0%, #6fbcdf99 var(--gradientMid), #FF576599 var(--gradientMid), #FF576599 100%);
     animation: title-bg-updown 3s ease-in-out alternate infinite -1.5s;
 }
 
 @keyframes title-bg-updown {
     0% {
-        transform: translateY(-25vh) scale(500%);
+        transform: translateY(-25vh);
         /* background-position: center -25vh; */
     }
     100% {
         /* background-position: center 25vh; */
-        transform: translateY(25vh) scale(500%);
+        transform: translateY(25vh);
     }
 }
 
 @keyframes title-bg-tilt {
     0% {
-        transform: rotateZ(0deg);
+        transform: rotate(0deg);
     }
     100% {
-        transform: rotateZ(360deg);
+        transform: rotate(360deg);
     }
 }

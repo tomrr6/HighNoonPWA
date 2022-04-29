@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>High Noon</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="./css/master.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,9 +24,10 @@
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-    <div id="gameBGtilt" class="on-title-screen">
-        <div id="gameBG"></div>
+    <div id="titleBGtiltHolder">
+        <div id="titleBGtilt" class="on-title-screen">
+            <div id="titleBG"></div>
+        </div>
     </div>
 
     <div id="title-screen">
@@ -40,7 +41,7 @@
                 <div id="resumeRecap">
                     🧑
                     <span id="resumeScoreP1"></span>
-                    vs
+                    -
                     <span id="resumeScoreP2"></span>
                     <span id="resumeCPUP2">🧑</span>
                 </div> 
