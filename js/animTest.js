@@ -16,7 +16,7 @@ let CPUdelay = 5000;
 const maxCPUdelay = 1000;
 
 const titleScreenLocation = "../index.html";
-let checkIfLooseFocus = false;
+let checkIfLooseFocus = true;
 
 
 
