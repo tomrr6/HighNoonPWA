@@ -1,24 +1,25 @@
-body{
+body {
     margin: 0;
     padding: 0;
     user-select: none;
     overflow: hidden;
-
     --p1-color: #FF5765;
     --p2-color: #6fbcdf;
     /* --p2-color: hsl(199, 15%, 65%); */
     --victory-color: #ffd324;
-
 }
-#gameContainer{
+
+#gameContainer {
     /* filter: blur(5px); */
     overflow: hidden;
     width: 100vw;
     height: 100vh;
 }
-#gameBG{
+
+#gameBG {
     position: absolute;
     top: -100%;
+    left: 0;
     width: 100%;
     height: 300%;
     --gradientMid: 50%;
@@ -28,75 +29,82 @@ body{
     transition: transform .5s ease-in-out, opacity 0.01s ease-out;
     /* animation: bgP2Victory .1s both ease-out 1s; */
 }
-#gameBG.p1Victory{
+
+#gameBG.p1Victory {
     transition: transform .1s cubic-bezier(.8, .5, .2, 1.4), opacity 1s ease-out;
     transform: translateY(-25vh);
 }
-#gameBG.p2Victory{
+
+#gameBG.p2Victory {
     transition: transform .1s cubic-bezier(.8, .5, .2, 1.4), opacity 1s ease-out;
     transform: translateY(25vh);
 }
-#gameBG.waitingToShoot{
+
+#gameBG.waitingToShoot {
     transition: transform .5s ease-in-out, opacity 1s ease-out;
     opacity: 30%;
 }
 
-div.playerSide{
+div.playerSide {
     position: relative;
     /* outline:rgba(26, 240, 151, 0.6) solid .25rem; */
     width: 100%;
     height: 50%;
     margin: 0;
 }
+
+
 /* rotates p2 */
-div.p2Side{
+
+div.p2Side {
     transform: rotateY(180deg) rotateX(180deg);
 }
-div.p2Side.CPUplayer
-{
+
+div.p2Side.CPUplayer {
     /* backdrop-filter: saturate(0%); */
     filter: saturate(0%);
 }
 
-p{
+p {
     font-size: 2rem;
     text-align: center;
     color: rgba(255, 255, 255, .7);
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: 500;
 }
 
-p.buttonText{
+p.buttonText {
     margin: 0;
     position: relative;
     top: 5.5rem;
     font-size: 4rem;
     color: rgba(255, 255, 255, 1);
     opacity: 0%;
-
     transition: opacity .05s ease-in, top .05s ease-out;
 }
-p.fireText{
+
+p.fireText {
     display: none;
     font-family: 'Seymour One', sans-serif;
 }
-div.shootButton.shootButtonReady p.buttonText{
+
+div.shootButton.shootButtonReady p.buttonText {
     display: block;
     opacity: 100%;
     top: 4.5rem;
 }
-div.shootButton.shootButtonReady{
+
+div.shootButton.shootButtonReady {
     transition: border-width 0 ease-in;
     animation: borderPulse .1s ease-in-out infinite alternate;
 }
-div.shootButton{
+
+div.shootButton {
     background-color: var(--p1-color);
     border-color: rgba(255, 255, 255, .2);
     border-style: solid;
     border-width: 0;
-
     transition: transform .5s ease-in;
-
     position: absolute;
     bottom: -10rem;
     left: 0;
@@ -109,29 +117,34 @@ div.shootButton{
     user-select: none;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
-div.shootButton.shootButtonReady:active{
+
+div.shootButton.shootButtonReady:active {
     transform: scale(1.3, 0.85);
 }
-div.shootButton#p2ShootButton{
+
+div.shootButton#p2ShootButton {
     background-color: var(--p2-color);
 }
-div.shootButton.winnerButton{
+
+div.shootButton.winnerButton {
     border-width: .6rem .6rem 0 .6rem;
     border-color: var(--victory-color);
     animation: shootButtonWin .1s both ease-in-out;
 }
-div.shootButton.winnerButton p.blinkingTime{
+
+div.shootButton.winnerButton p.blinkingTime {
     color: var(--victory-color);
     animation: fadingText .5s both ease-in-out infinite;
 }
-div.shootButton.loserButton{
+
+div.shootButton.loserButton {
     animation: shootButtonLoss .1s both ease-out;
 }
 
 
-
 /* Score Dots */
-.score{
+
+.score {
     position: absolute;
     top: 3rem;
     margin-inline: auto;
@@ -144,6 +157,7 @@ div.shootButton.loserButton{
     align-items: center;
 }
 
+
 /* .score{
     position: absolute;
     top: 2rem;
@@ -152,10 +166,12 @@ div.shootButton.loserButton{
     flex-direction: column-reverse;
     gap: 1rem;
 } */
-div.scoreDot{
+
+div.scoreDot {
     /* flex-grow: 1; */
     /* opacity: 75%; */
-    width: 1rem;;
+    width: 1rem;
+    ;
     height: 1rem;
     border: rgba(255, 255, 255, .5) .25rem solid;
     border-radius: 1rem;
@@ -165,26 +181,30 @@ div.scoreDot{
     animation: growIn .5s ease-out both;
     transition: outline .5s ease-in-out, border .25s ease-in-out, padding .25s ease-in-out;
 }
-@keyframes growIn{
-    0%{
+
+@keyframes growIn {
+    0% {
         transform: rotateY(90deg) perspective(1rem);
     }
-    100%{
+    100% {
         transform: rotateY(0deg) perspective(1rem);
-    }    
+    }
 }
-div.scoreDot.newlyFilled{
+
+div.scoreDot.newlyFilled {
     border-width: 0rem;
     padding: .25rem;
     outline: var(--victory-color) .75rem solid;
     outline-offset: -.75rem;
 }
-div.scoreDot.filled{
+
+div.scoreDot.filled {
     border-width: 0rem;
     padding: .25rem;
     outline: rgba(255, 255, 255, .5) .75rem solid;
     outline-offset: -.75rem;
 }
+
 
 /* div.scoreDot{
     flex-grow: 1.1;
@@ -208,21 +228,24 @@ div.scoreDot.filled, div.scoreDot.empty:hover{
     border-color: rgba(255, 255, 255, 0);
 } */
 
+
 /* Wait For It */
-div#waitForIt{
-    pointer-events: none; 
+
+div#waitForIt {
+    pointer-events: none;
     transform: scale(1);
     z-index: 1;
     position: absolute;
     width: 100%;
     height: 100%;
 }
-div#waitForIt>p{
-    pointer-events: none; 
+
+div#waitForIt>p {
+    pointer-events: none;
     position: absolute;
     width: fit-content;
     height: fit-content;
-    top:0;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -234,27 +257,30 @@ div#waitForIt>p{
     /* text-shadow: 0 0 2rem rgba(0,0,0, .1); */
 }
 
-div.hidden{
+div.hidden {
     display: none;
 }
 
 
 /* Blinking Time Display */
-p.blinkingTime{
+
+p.blinkingTime {
     animation: fadingText 3s linear infinite both;
 }
 
-@keyframes fadingText{
-    0%, 100%{
+@keyframes fadingText {
+    0%,
+    100% {
         opacity: .2;
     }
-    50%{
+    50% {
         opacity: .9;
     }
 }
 
 @keyframes borderPulse {
-    0%, 100% {
+    0%,
+    100% {
         border-width: .35rem .35rem 0 .35rem;
     }
     100% {
@@ -271,33 +297,35 @@ p.blinkingTime{
     }
 }
 
+
 /* Victory Animations */
 
 @keyframes shootButtonLoss {
-    0%{
-    }
-    48%{
+    0% {}
+    48% {
         transform: scale(1, 1);
     }
-    90%{
+    90% {
         transform: scale(1.6, 0.5);
     }
-    100%{
+    100% {
         transform: scale(1.5, 0.5);
     }
 }
+
 @keyframes shootButtonWin {
-    0%, 100%{
+    0%,
+    100% {
         transform: scale(1, 1);
     }
-    70%{
+    70% {
         transform: scale(.7, 1.2);
     }
 }
 
-div.boxingVic{
+div.boxingVic {
     z-index: 9999;
-    pointer-events: none; 
+    pointer-events: none;
     transform: translateY(120%);
     width: 20rem;
     position: absolute;
@@ -308,38 +336,168 @@ div.boxingVic{
     margin-inline: auto;
     display: none;
 }
-div.boxingVic>img{
-    pointer-events: none; 
+
+div.boxingVic>img {
+    pointer-events: none;
     width: 100%;
     height: 100%;
 }
-div.p2Side>div.boxingVic>img{
-        filter: hue-rotate(-880deg);
+
+div.p2Side>div.boxingVic>img {
+    filter: hue-rotate(-880deg);
 }
 
-div.boxingVic.winActivated>img{
+div.boxingVic.winActivated>img {
     /* z-index: 9999; */
 }
-div.boxingVic.winActivated{
+
+div.boxingVic.winActivated {
     display: block;
     animation: boxingVicAnimation .2s both ease-in;
 }
 
-@keyframes boxingVicAnimation{
-    0%{
+@keyframes boxingVicAnimation {
+    0% {
         transform: translateY(0vh) scaleY(1.1);
         /* filter:blur(1rem); */
     }
-    50%{
+    50% {
         transform: translateY(-50vh) scaleY(1.5);
         /* filter:blur(1rem); */
     }
-    51%{
+    51% {
         transform: translateY(-50vh) scaleY(1);
         /* filter:blur(0rem); */
     }
-    100%{
+    100% {
         transform: translateY(-45vh);
     }
 }
 
+
+/* Title Screen ---------------------------------------- */
+
+
+/* #multiplePages {
+    width: 100%;
+    height: 100%;
+} */
+
+#title-screen {
+    max-width: 30rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-inline: auto;
+    margin-block-start: 1rem;
+    margin-block-end: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+#title-logo {
+    font-family: 'Rubik Moonrocks';
+    font-size: 12vh;
+    font-weight: 100;
+    /* margin: .5rem; */
+    line-height: .8em;
+    color: rgba(255, 255, 255, .875);
+    text-shadow: 0 0 .15rem rgba(0, 0, 0, .5);
+    margin: 0;
+}
+
+.horiz-sub-flex {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+}
+
+a {
+    flex-grow: 1;
+    display: flex;
+    text-decoration: none;
+}
+
+button {
+    font-weight: 900;
+    text-shadow: 0 0 .15rem rgba(0, 0, 0, .5);
+    color: rgba(255, 255, 255, 1);
+    font-family: sans-serif;
+    vertical-align: middle;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(230, 230, 230, 0.6);
+    backdrop-filter: blur(1rem);
+    border-radius: 1rem;
+    /* margin: 1rem; */
+    padding: 1rem;
+    font-size: 1.5rem;
+    transition: background-color .1s ease-out;
+    flex-grow: 1;
+    /* , border-radius .1s ease-in-out; */
+    /* animation: growIn .5s linear; */
+}
+
+button:hover,
+a:hover {
+    transform: scale(1.05);
+    background-color: rgba(230, 230, 230, 0.8);
+}
+
+#vsHumanButton,
+#vsCPUButton {
+    --gradientMid: 50%;
+    --opacity: 1;
+    background: linear-gradient(-90deg, #6fbcdf99 0%, #6fbcdf99 var(--gradientMid), #FF576599 var(--gradientMid), #FF576599 100%);
+    font-size: 2rem;
+}
+
+#gameBGtilt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+#gameBGtilt.on-title-screen {
+    animation: title-bg-tilt 10s linear infinite;
+    transition: none;
+}
+
+#gameBGtilt.on-title-screen>#gameBG {
+    transition: none;
+    animation: title-bg-updown 3s ease-in-out alternate infinite -1.5s;
+}
+
+@keyframes title-bg-updown {
+    0% {
+        transform: translateY(-25vh) scale(500%);
+        /* background-position: center -25vh; */
+    }
+    100% {
+        /* background-position: center 25vh; */
+        transform: translateY(25vh) scale(500%);
+    }
+}
+
+@keyframes title-bg-tilt {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}

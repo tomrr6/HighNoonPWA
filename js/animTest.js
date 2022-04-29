@@ -1,6 +1,9 @@
-var pointsNeededToWin = 5;
-var p1Points = 0;
-var p2Points = 0;
+const SETTINGS = getSettings();
+
+var pointsNeededToWin = SETTINGS.pointsNeededToWin;
+var misfiresCheckedFor = SETTINGS.misfiresCheckedFor;
+// var p1Points = 0;
+// var p2Points = 0;
 var highNoonStart = null;
 var p1ShootTime = null;
 var p2ShootTime = null;
@@ -8,44 +11,49 @@ let shootAllowed = false;
 let highNoonTimeout = null;
 let newlyFilledDotTimeout = null;
 
-const vsCPU = false;
+let vsCPU = SETTINGS.vsCPU;
 let CPUdelay = 5000;
 const maxCPUdelay = 1000;
 
-$(document).ready(function(){
+
+
+$(document).ready(function() {
     createScoreBoard();
     startGame();
 });
 
-$('.scoreDot').click(function(){
+//return to title screen if loose focus
+$(window).blur(function() {
+    window.location.href = "/index.html";
+});
+
+$('.scoreDot').click(function() {
     $(this).toggleClass('newlyFilled');
 });
 
 // p1 Win
-$('#p1ShootButton').tap(function(){
-    if(!shootAllowed){
-        if(p2Points < pointsNeededToWin-1){ //can't win from a misfire
-            p2Points++;
+$('#p1ShootButton').tap(function() {
+    if (!shootAllowed && misfiresCheckedFor) {
+        if (getCurrentGame().p2Points < pointsNeededToWin - 1) { //can't win from a misfire
+            increaseOrDecreaseScore(2, 1);
             updateScore();
             alert('Player 1 misfire!😟\nOther player gets a point!');
             resetScreen();
-        }
-        else{
+        } else {
             alert('Player 1 misfire!😟');
             resetScreen(false);
         }
-    }
-    else if(p1ShootTime == null && shootAllowed){
+    } else if (p1ShootTime == null && shootAllowed) {
         p1ShootTime = Date.now();
         console.log('p1 shoot: ' + p1ShootTime);
         console.log('p1 shoot - high noon: ' + (p1ShootTime - highNoonStart));
-        $('#p1TimeDisplay').text((p1ShootTime - highNoonStart)/1000 +'s');
+        $('#p1TimeDisplay').text((p1ShootTime - highNoonStart) / 1000 + 's');
 
-        if(p2ShootTime == null){
-            p1Points ++;
+        if (p2ShootTime == null) {
+            increaseOrDecreaseScore(1, 1);
             $('#p1ShootButton').removeClass('shootButtonReady');
             $('#p2ShootButton').removeClass('shootButtonReady');
-        
+
             $('#p2ShootButton').addClass('loserButton');
             $('#p1ShootButton').addClass('winnerButton');
             $('#p1BoxingGlove').addClass('winActivated');
@@ -61,27 +69,25 @@ $('#p1ShootButton').tap(function(){
     }
 });
 
-$('#p2ShootButton').tap(function(){
-    if(!shootAllowed){
-        if(p1Points < pointsNeededToWin-1){ //can't win from a misfire
-            p1Points++;
+$('#p2ShootButton').tap(function() {
+    if (!shootAllowed && misfiresCheckedFor) {
+        if (getCurrentGame().p1Points < pointsNeededToWin - 1) { //can't win from a misfire
+            increaseOrDecreaseScore(1, 1);
             updateScore();
             alert('Player 2 misfire!😟\nOther player gets a point!');
             resetScreen();
-        }
-        else{
+        } else {
             alert('Player 2 misfire!😟');
             resetScreen(false);
         }
-    }
-    else if (p2ShootTime == null && shootAllowed){
+    } else if (p2ShootTime == null && shootAllowed) {
         p2ShootTime = Date.now();
         console.log('p2 shoot: ' + p2ShootTime);
         console.log('p2 shoot - high noon: ' + (p2ShootTime - highNoonStart));
-        $('#p2TimeDisplay').text((p2ShootTime - highNoonStart)/1000 +'s');
+        $('#p2TimeDisplay').text((p2ShootTime - highNoonStart) / 1000 + 's');
 
-        if(p1ShootTime == null){
-            p2Points ++;
+        if (p1ShootTime == null) {
+            increaseOrDecreaseScore(2, 1);
 
             $('#p1ShootButton').removeClass('shootButtonReady');
             $('#p2ShootButton').removeClass('shootButtonReady');
@@ -104,52 +110,53 @@ $('#p2ShootButton').tap(function(){
 //create score boards
 // $('.score').ready(function(){
 
-function createScoreBoard(){
+function createScoreBoard() {
     $('#p1Score').empty();
     $('#p2Score').empty();
-    for(var i = 0; i < pointsNeededToWin; i++){
-        $('#p1Score').append('<div class="scoreDot" style="animation-delay: +'+ i*100 +'ms"></div>');
-        $('#p2Score').append('<div class="scoreDot" style="animation-delay: +'+ i*100 +'ms"></div>');
+    for (var i = 0; i < pointsNeededToWin; i++) {
+        $('#p1Score').append('<div class="scoreDot" style="animation-delay: +' + i * 100 + 'ms"></div>');
+        $('#p2Score').append('<div class="scoreDot" style="animation-delay: +' + i * 100 + 'ms"></div>');
     }
     updateScore();
 }
 
-function updateScore(){
+function updateScore() {
     window.clearTimeout(newlyFilledDotTimeout);
 
-    console.log('p1 points: ' + p1Points);
-    console.log('p2 points: ' + p2Points);
-    
-    for(var i = 0; i < p1Points; i++){
+    console.log('p1 points: ' + getCurrentGame().p1Points);
+    console.log('p2 points: ' + getCurrentGame().p2Points);
+
+    for (var i = 0; i < getCurrentGame().p1Points; i++) {
         $('#p1Score').children().eq(i).addClass('newlyFilled');
     }
-    for(var i = 0; i < p2Points; i++){
+    for (var i = 0; i < getCurrentGame().p2Points; i++) {
         $('#p2Score').children().eq(i).addClass('newlyFilled');
     }
 
-    if(p1Points >= pointsNeededToWin){
+    if (getCurrentGame().p1Points >= pointsNeededToWin) {
         alert('Player 1 wins!');
-        p1Points = 0;
-        p2Points = 0;
-        createScoreBoard();
-        resetScreen();
-        // window.location.reload();
-    }
-    else if(p2Points >= pointsNeededToWin){
+        // p1Points = 0;
+        // p2Points = 0;
+        createNewCurrentGame();
+        // createScoreBoard();
+        // resetScreen();
+        window.location.href = "./index.html";
+    } else if (getCurrentGame().p2Points >= pointsNeededToWin) {
         alert('Player 2 wins!');
-        p1Points = 0;
-        p2Points = 0;
-        createScoreBoard();
-        resetScreen();
-        // window.location.reload();
+        // p1Points = 0;
+        // p2Points = 0;
+        // createScoreBoard();
+        // resetScreen();
+        createNewCurrentGame();
+        window.location.href = "./index.html";
     }
 
-    newlyFilledDotTimeout = setTimeout(function(){
+    newlyFilledDotTimeout = setTimeout(function() {
         $('.newlyFilled').removeClass('newlyFilled').addClass('filled');
     }, 2000);
 }
 
-function resetScreen(solidifyScore = true){
+function resetScreen(solidifyScore = true) {
     window.clearTimeout(highNoonTimeout);
     shootAllowed = false;
     $('#p1ShootButton').removeClass('shootButtonReady');
@@ -170,9 +177,9 @@ function resetScreen(solidifyScore = true){
     startGame();
 }
 
-function startGame(){
-    
-    if(vsCPU){
+function startGame() {
+
+    if (vsCPU) {
         CPUdelay = Math.random() * maxCPUdelay + 200;
     }
 
@@ -182,15 +189,15 @@ function startGame(){
     p1ShootTime = null;
     p2ShootTime = null;
     $('#waitForIt').removeClass('hidden');
-    
+
     let highNoonDelay = Math.random() * 10000 + 3000;
     highNoonTimeout = setTimeout(function() {
         highNoonStart = Date.now();
         $('#gameBG').removeClass('waitingToShoot');
         shootAllowed = true;
 
-        if(vsCPU){
-            setTimeout(function(){
+        if (vsCPU) {
+            setTimeout(function() {
                 $('#p2ShootButton').trigger('tap');
             }, CPUdelay);
         }
