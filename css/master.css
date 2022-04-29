@@ -27,7 +27,6 @@ body {
     opacity: 60%;
     transform: translateY(0);
     transition: transform .5s ease-in-out, opacity 0.01s ease-out;
-    /* animation: bgP2Victory .1s both ease-out 1s; */
 }
 
 #gameBG.p1Victory {
@@ -43,6 +42,17 @@ body {
 #gameBG.waitingToShoot {
     transition: transform .5s ease-in-out, opacity 1s ease-out;
     opacity: 30%;
+}
+
+@keyframes bg-readyToShoot {
+    0% {
+        /* transform: translateY(-1vh); */
+        transform: rotate(1deg);
+    }
+    100% {
+        /* transform: translateY(1vh); */
+        transform: rotate(-1deg);
+    }
 }
 
 div.playerSide {
@@ -251,6 +261,8 @@ div#waitForIt>p {
     bottom: 0;
     margin: auto;
     font-size: 4rem;
+    font-family: sans-serif;
+    font-weight: 900;
     color: rgba(255, 255, 255, .7);
     animation: rotateText 4s infinite linear, fadingText 1.1s infinite ease-in-out;
     animation-delay: -2.5s;
