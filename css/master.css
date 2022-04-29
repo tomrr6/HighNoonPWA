@@ -73,6 +73,7 @@ div.p2Side {
 div.p2Side.CPUplayer {
     /* backdrop-filter: saturate(0%); */
     filter: saturate(0%);
+    pointer-events: none;
 }
 
 p {
@@ -479,6 +480,20 @@ a:hover {
     --gradientMid: 50%;
     background: linear-gradient(-90deg, #6fbcdfaa 0%, #6fbcdfaa var(--gradientMid), #FF5765aa var(--gradientMid), #FF5765aa 100%);
     font-size: 2.5rem;
+}
+
+#resumeGameButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#resumeGameButton>div#resumeRecap {
+    --gradientMid: 50%;
+    background: linear-gradient(-90deg, #6fbcdf99 0%, #6fbcdf99 var(--gradientMid), #FF576599 var(--gradientMid), #FF576599 100%);
+    border-radius: 1rem;
+    padding: .5rem;
 }
 
 #gameBGtilt {

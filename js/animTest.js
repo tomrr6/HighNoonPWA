@@ -16,17 +16,23 @@ let CPUdelay = 5000;
 const maxCPUdelay = 1000;
 
 const titleScreenLocation = "../index.html";
+let checkIfLooseFocus = true;
 
 
 
 $(document).ready(function() {
+    if (vsCPU) {
+        $('div.p2Side').addClass('CPUplayer');
+    }
     createScoreBoard();
     startGame();
 });
 
 // return to title screen if loose focus
 $(window).blur(function() {
-    window.location.href = titleScreenLocation;
+    if (checkIfLooseFocus) {
+        window.location.href = titleScreenLocation;
+    };
 });
 
 $('.scoreDot').click(function() {

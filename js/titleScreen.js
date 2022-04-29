@@ -6,6 +6,12 @@ if (getCurrentGame() == null ||
     (getCurrentGame().p1Points == 0 && getCurrentGame().p2Points == 0)) {
     prevGameInMemory = false;
     $('#resumeGameButton').hide();
+} else {
+    $('#resumeGameButton span#resumeScoreP1').html(getCurrentGame().p1Points);
+    $('#resumeGameButton span#resumeScoreP2').html(getCurrentGame().p2Points);
+    if (getSettings().vsCPU) {
+        $('#resumeGameButton span#resumeCPUP2').html('🤖');
+    }
 }
 
 $('#resumeGameButton').click(function() {
