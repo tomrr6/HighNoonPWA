@@ -14,7 +14,6 @@ body {
 }
 
 #gameContainer {
-    /* filter: blur(5px); */
     overflow: hidden;
     width: 100vw;
     /* height: 100vh; */
@@ -461,7 +460,7 @@ button {
     border: none;
     cursor: pointer;
     background-color: rgba(230, 230, 230, 0.6);
-    backdrop-filter: blur(1rem);
+    backdrop-filter: blur(.5rem);
     border-radius: 1rem;
     /* margin: 1rem; */
     padding: 1rem;
@@ -528,7 +527,7 @@ a:hover {
 
 #titleBGtilt {
     overflow: visible;
-    animation: title-bg-tilt 10s linear infinite 5s;
+    animation: title-bg-tilt 10s linear infinite;
     transition: none;
     display: flex;
     justify-content: center;
