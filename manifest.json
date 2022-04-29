@@ -1,0 +1,18 @@
+{
+    "background_color": "#ffffff",
+    "description": "A fun, quick game",
+    "dir": "ltr",
+    "display": "standalone",
+    "name": "tomrr6.github",
+    "orientation": "any",
+    "scope": "/",
+    "short_name": "tomrr6.github",
+    "start_url": "/",
+    "theme_color": "#ffffff",
+    "icons": [{
+        "src": "twotone_sports_mma_black_24dp.png",
+        "type": "image/x-icon",
+        "sizes": "144x144",
+        "purpose": "any"
+    }]
+}
