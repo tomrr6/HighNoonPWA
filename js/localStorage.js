@@ -24,7 +24,7 @@ function updateJSON(JSONname, key, value) {
     window.localStorage.setItem(JSONname, JSON.stringify(currentJSON));
 }
 
-// current game functions
+// current game functions --------------------------------------------------
 
 function createNewCurrentGame() {
     resetJSON('currentGame', newCurrentGame);
@@ -49,7 +49,7 @@ function increaseOrDecreaseScore(player, amount) {
     updateCurrentGame('p2Points', currentGame.p2Points);
 }
 
-// setings functions
+// setings functions ------------------------------------------------------------
 
 const defaultSettings = {
     "vsCPU": false,
@@ -72,6 +72,46 @@ function updateSettings(key, value) {
 
 
 
-// createNewCurrentGame();
-console.log(getSettings());
-console.log(getCurrentGame());
+//leaderboard functions----------------------------------------
+// const newEmptyLeaderboard = {
+//     highScoreArray: []
+// };
+// const highScoreTemplate = {
+//     player: null,
+//     timeToPress: null,
+//     dateTimeRecorded: null
+// };
+
+// function resetLeaderboard() {
+//     resetJSON('leaderboard', newEmptyLeaderboard);
+// };
+
+// function getleaderboard() {
+//     return getJSON('leaderboard').highScoreArray;
+// };
+
+// function sortLeaderboard() {
+//     var leaderboard = getleaderboard();
+//     leaderboard.sort(function(a, b) {
+//         return a.timeToPress - b.timeToPress;
+//     });
+//     updateLeaderboard('highScoreArray', leaderboard);
+// }
+
+// function updateLeaderboard(key, value) {
+
+// };
+
+// //initialize-----------------------------------
+// if (getSettings() == null) {
+//     resetSettings();
+// }
+// if (getleaderboard() == null) {
+//     resetLeaderboard();
+// }
+
+
+// // createNewCurrentGame();
+// console.log(getSettings());
+// console.log(getCurrentGame());
+// console.log(getleaderboard());

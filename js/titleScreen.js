@@ -1,5 +1,7 @@
 var prevGameInMemory = true;
 
+
+// resume game button
 if (getCurrentGame() == null ||
     (getCurrentGame().p1Points == 0 && getCurrentGame().p2Points == 0)) {
     prevGameInMemory = false;
@@ -9,6 +11,8 @@ if (getCurrentGame() == null ||
 $('#resumeGameButton').click(function() {
     window.location.href = "pages/game.html";
 });
+
+//new game buttons
 $('#vsHumanButton').click(function() {
     if (!prevGameInMemory || confirm('Are you sure you want to start a new game?\n\nYou will lose your current game.')) {
         createNewCurrentGame();

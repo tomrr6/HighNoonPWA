@@ -15,6 +15,8 @@ let vsCPU = SETTINGS.vsCPU;
 let CPUdelay = 5000;
 const maxCPUdelay = 1000;
 
+const titleScreenLocation = "../index.html";
+
 
 
 $(document).ready(function() {
@@ -22,10 +24,10 @@ $(document).ready(function() {
     startGame();
 });
 
-//return to title screen if loose focus
-// $(window).blur(function() {
-//     window.location.href = "./index.html";
-// });
+// return to title screen if loose focus
+$(window).blur(function() {
+    window.location.href = titleScreenLocation;
+});
 
 $('.scoreDot').click(function() {
     $(this).toggleClass('newlyFilled');
@@ -140,7 +142,7 @@ function updateScore() {
         createNewCurrentGame();
         // createScoreBoard();
         // resetScreen();
-        window.location.href = "./index.html";
+        window.location.href = titleScreenLocation;
     } else if (getCurrentGame().p2Points >= pointsNeededToWin) {
         alert('Player 2 wins!');
         // p1Points = 0;
@@ -148,7 +150,7 @@ function updateScore() {
         // createScoreBoard();
         // resetScreen();
         createNewCurrentGame();
-        window.location.href = "./index.html";
+        window.location.href = titleScreenLocation;
     }
 
     newlyFilledDotTimeout = setTimeout(function() {
