@@ -20,7 +20,7 @@ $('#vsCPUButton').click(function() {
     if (!prevGameInMemory || confirm('Are you sure you want to start a new game?\n\nYou will lose your current game.')) {
         createNewCurrentGame();
         updateSettings('vsCPU', true);
-        window.location.href = "./pages/game.html";
+        window.location.href = "pages/game.html";
     }
 });
 
