@@ -4,10 +4,10 @@
     "dir": "ltr",
     "display": "standalone",
     "name": "tomrr6.github",
-    "orientation": "any",
-    "scope": "/HighNoonPWA/",
+    "orientation": "portrait",
+    "scope": ".",
     "short_name": "tomrr6.github",
-    "start_url": "/",
+    "start_url": "./",
     "theme_color": "#ffffff",
     "icons": [{
         "src": "images/144x144.png",
