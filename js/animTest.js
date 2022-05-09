@@ -46,10 +46,10 @@ $('#p1Side').tap(function() {
         if (getCurrentGame().p2Points < pointsNeededToWin - 1) { //can't win from a misfire
             increaseOrDecreaseScore(2, 1);
             updateScore();
-            alert('Player 1 misfire!😟\nOther player gets a point!');
+            // alert('Player 1 misfire!😟\nOther player gets a point!');
             resetScreen();
         } else {
-            alert('Player 1 misfire!😟');
+            // alert('Player 1 misfire!😟');
             resetScreen(false);
         }
     } else if (p1ShootTime == null && shootAllowed) {
@@ -83,10 +83,10 @@ $('#p2Side').tap(function() {
         if (getCurrentGame().p1Points < pointsNeededToWin - 1) { //can't win from a misfire
             increaseOrDecreaseScore(1, 1);
             updateScore();
-            alert('Player 2 misfire!😟\nOther player gets a point!');
+            // alert('Player 2 misfire!😟\nOther player gets a point!');
             resetScreen();
         } else {
-            alert('Player 2 misfire!😟');
+            // alert('Player 2 misfire!😟');
             resetScreen(false);
         }
     } else if (p2ShootTime == null && shootAllowed) {
